@@ -1,0 +1,79 @@
+<!-- Head -->
+<%- include('../partials/head'); %>
+<!-- End Head -->
+
+<style>
+  .form-control{
+    width: 90%;
+  }
+  form{
+    width: 50%;
+  }
+ 
+</style>
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+   
+        <!-- Sidebar navigation-->
+        <%- include('../partials/sidebar'); %>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <%- include('../partials/header'); %>
+ 
+      <!--  Header End -->
+
+      <% if (typeof successMsg !== 'undefined') { %>
+        <div class="success-message">
+           <p> <%= successMsg %> </p>
+        </div>
+      <% } %>
+      <div class="container-fluid">
+        
+        <div class="d-flex justify-content-center p-3">
+          <form method="post" action="/patients/save">
+            <div class="mb-3">
+              <label for="name" class="form-label">DNI</label>
+              <input type="number" class="form-control" id="dni" name="dni" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Telefono</label>
+              <input type="number" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/sidebarmenu.js"></script>
+  <script src="/assets/js/app.min.js"></script>
+  <!--<script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>-->
+  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+  <!--<script src="/assets/js/dashboard.js"></script>-->
+</body>
+
+</html>

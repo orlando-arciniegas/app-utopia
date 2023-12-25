@@ -6,9 +6,9 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Head -->
+    <!-- Sidebar -->
     <%- include('../partials/sidebar'); %>
-    <!-- End Head -->
+    <!-- End Sidebar -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
       <!--  Header Start -->
@@ -25,10 +25,11 @@
                 <h5 class="card-title fw-semibold mb-4">Pacientes</h5>
                 <div class="mb-3 row justify-content-center">
                   <div class="col-sm-6">
-                    <form class="row g-3" action="/items/search" method="POST">
+                    <form class="row g-3" method="GET">
                       <div class="col-auto">
                         <label for="staticEmail2" class="visually-hidden">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="filter" name="filter"
+                          placeholder="Buscar un paciente">
                       </div>
                       <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-3">Buscar</button>
@@ -36,46 +37,53 @@
                     </form>
                   </div>
                 </div>
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                      <tr>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">DNI</h6>
-                        </th>
-
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Nombre</h6>
-                        </th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">19111826</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-1">Orlando Arciniegas</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                          <a class="sidebar-link" href="/detalle" aria-expanded="false">
-                            <span>
-                              <i class="ti ti-file-description"></i>
-                            </span>
-                            <span class="hide-menu">Detalle</span>
-                          </a>
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>
+
+
         </div>
+
+        <% if (typeof patients !== 'undefined' && patients && patients.length > 0) { %>
+        <div class="table-responsive">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">DNI</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Nombre</h6>
+                </th>
+                <th class="border-bottom-0">Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let i = 0; i < patients.length; i++) { %>
+              <tr>
+                <td class="border-bottom-0">
+                  <span class="fw-semibold mb-0"><%= patients[i].dni %></span>
+                </td>
+                <td class="border-bottom-0">
+                  <span class="fw-semibold mb-1"> <%= patients[i].name %></span>
+                </td>
+                <td class="border-bottom-0">
+                  <a class="sidebar-link" href="/detalle" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Detalle</span>
+                  </a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <% } else { %>
+        <p>No hay pacientes para mostrar</p>
+        <% } %>
+        <!-- End patients -->
 
         <div class="py-6 px-6 text-center">
           <p class="mb-0 fs-4">Utopia Dental Software</p>
